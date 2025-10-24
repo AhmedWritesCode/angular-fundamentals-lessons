@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-
+// for some reason we call html as templates
 @Component({
   selector: 'app-root',
   standalone: true,
