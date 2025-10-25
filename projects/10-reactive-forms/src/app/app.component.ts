@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ReactiveFormsModule, FormGroup, FormControl} from '@angular/forms';
-
+// formGroup is like the source of truth, hols values and tracks validity and changes.
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -8,13 +8,13 @@ import { ReactiveFormsModule, FormGroup, FormControl} from '@angular/forms';
   template: `
     <article>
       <h1>Blog Post</h1>
-      <form name="blogForm">
+      <form name="blogForm" [formGroup]="blogForm" (ngSubmit)="handleFormSubmit()">
         <section>
           <label for="title">Post Title</label>
-          <input type="text" id="title" />
+          <input type="text" id="title" formControlName = "title"/>
 
           <label for="body">Post Body</label>
-          <textarea name="" id="body" cols="30" rows="10"></textarea>
+          <textarea name="" id="body" cols="30" rows="10" formControlName = "body"></textarea>
         </section>
         <button type="submit">Submit Post</button>
       </form>
@@ -28,9 +28,12 @@ export class AppComponent {
     body: new FormControl(''),
   });
 
-  handleFormSubmit() {}
+  handleFormSubmit() {
+    console.log(this.blogForm.value + '": SUCCESS!');
+    this.postBlog(this.blogForm.value.title, this.blogForm.value.body)
+  }
 
-  postBlog(title: string | null | undefined, body: string | null | undefined) {
+  postBlog(title: string | undefined | null , body: string | undefined | null) {
     console.log(`Posting blog titles ${title}, with the contents ${body}.`);
   }
 }
