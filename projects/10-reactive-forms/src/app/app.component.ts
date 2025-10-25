@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormGroup, FormControl} from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -23,6 +23,11 @@ import { ReactiveFormsModule } from '@angular/forms';
   styles: [],
 })
 export class AppComponent {
+  blogForm = new FormGroup({
+    title: new FormControl(''),
+    body: new FormControl(''),
+  });
+
   handleFormSubmit() {}
 
   postBlog(title: string | null | undefined, body: string | null | undefined) {
